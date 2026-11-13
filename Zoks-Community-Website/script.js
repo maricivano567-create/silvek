@@ -1,0 +1,4 @@
+const canvas=document.getElementById('particles');const ctx=canvas.getContext('2d');let w,h,pts=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;pts=Array.from({length:Math.min(85,Math.floor(w/15))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.7+.4,v:Math.random()*.35+.08,a:Math.random()*.55+.15}))}
+function draw(){ctx.clearRect(0,0,w,h);for(const p of pts){p.y-=p.v;if(p.y<0){p.y=h;p.x=Math.random()*w}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(30,145,255,${p.a})`;ctx.fill()}requestAnimationFrame(draw)}
+addEventListener('resize',resize);resize();draw();
